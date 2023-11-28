@@ -1,5 +1,26 @@
+import { Grid, GridItem, Show } from '@chakra-ui/react'
+
 function App() {
-  return <h1>Portal Rick and Morty</h1>
+  return (
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`
+      }}
+    >
+      <GridItem bg="coral" area="nav">
+        nav
+      </GridItem>
+      <Show above="lg">
+        <GridItem bg="pink" area="aside">
+          aside
+        </GridItem>
+      </Show>
+      <GridItem bg="dodgerblue" area="main">
+        main
+      </GridItem>
+    </Grid>
+  )
 }
 
 export default App
