@@ -1,0 +1,4 @@
+{
+  "**/*.+(js|jsx|ts|tsx)": ["yarn run lint"],
+  "**/*.+(js|jsx|ts|tsx|css|html|md|json)": ["yarn run format"]
+}
