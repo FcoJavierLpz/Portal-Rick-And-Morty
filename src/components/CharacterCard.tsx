@@ -1,5 +1,5 @@
 import Character from '../interfaces/Character'
-import { Card, CardBody, Heading, Image } from '@chakra-ui/react'
+import { Card, CardBody, Heading, Image, Text } from '@chakra-ui/react'
 
 interface Props {
   character: Character
@@ -7,10 +7,11 @@ interface Props {
 
 const CharacterCard = ({ character }: Props) => {
   return (
-    <Card borderRadius={10} overflow="hidden">
+    <Card>
       <Image src={character.image} />
       <CardBody>
         <Heading fontSize="2xl">{character.name}</Heading>
+        <Text color="gray.300">{character.species}</Text>
       </CardBody>
     </Card>
   )
