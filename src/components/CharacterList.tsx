@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { Box, Stack, Text, Spinner } from '@chakra-ui/react'
+import { Text, Spinner, SimpleGrid } from '@chakra-ui/react'
 
 import useCharacters from '../hooks/useCharacters'
+import CharacterCard from './CharacterCard'
 
 const CharacterList: React.FC = () => {
   const { characters, isLoading, isError } = useCharacters()
@@ -10,27 +11,17 @@ const CharacterList: React.FC = () => {
   if (isError) return <Text>Error loading characters</Text>
 
   return (
-    <Box p={4}>
-      <Stack spacing={4} mt={4}>
-        {characters.map(character => (
-          <Link key={character.id} to={`/character/${character.id}`}>
-            <Box
-              borderWidth="1px"
-              borderRadius="lg"
-              overflow="hidden"
-              p={4}
-              _hover={{ shadow: 'md' }}
-            >
-              <Text fontWeight="bold" fontSize="xl">
-                {character.name}
-              </Text>
-              <Text>{character.species}</Text>
-              <Text>{character.gender}</Text>
-            </Box>
-          </Link>
-        ))}
-      </Stack>
-    </Box>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+      padding="10px"
+      spacing={10}
+    >
+      {characters.map(character => (
+        <Link key={character.id} to={`/character/${character.id}`}>
+          <CharacterCard character={character} />
+        </Link>
+      ))}
+    </SimpleGrid>
   )
 }
 
