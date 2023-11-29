@@ -1,6 +1,7 @@
 import { HStack, Image } from '@chakra-ui/react'
 import logo from '../assets/logo.jpeg'
 import ColorModeSwitch from './ColorModeSwitch'
+import SearchInput from './SearchInput'
 
 const NavBar = () => {
   return (
@@ -13,6 +14,7 @@ const NavBar = () => {
         transition="transform 0.2s ease-in-out"
         _hover={{ transform: 'scale(1.1)' }}
       />
+      <SearchInput />
       <ColorModeSwitch />
     </HStack>
   )
