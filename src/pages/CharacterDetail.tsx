@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {
   Box,
   GridItem,
@@ -10,6 +11,7 @@ import {
 import { useParams } from 'react-router-dom'
 import useCharacter from '../hooks/useCharacter'
 import { Location } from '../interfaces/Character'
+import { useLastVisitedCharactersStore } from '../store'
 
 const DetailSection = ({ title, data }: { title: string; data: Location }) => (
   <>
@@ -29,6 +31,15 @@ const DetailSection = ({ title, data }: { title: string; data: Location }) => (
 const CharacterDetailPage = () => {
   const { slug } = useParams()
   const { data: character, isLoading, error } = useCharacter(slug!)
+  const addLastVisitedCharacter = useLastVisitedCharactersStore(
+    state => state.addLastVisitedCharacter
+  )
+
+  useEffect(() => {
+    if (character) {
+      addLastVisitedCharacter(character)
+    }
+  }, [addLastVisitedCharacter, character])
 
   if (isLoading) return <Spinner />
 

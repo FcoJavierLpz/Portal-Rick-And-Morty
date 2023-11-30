@@ -1,5 +1,6 @@
-import { Grid, GridItem } from '@chakra-ui/react'
+import { Box, Grid, GridItem, Heading, Show } from '@chakra-ui/react'
 import CharacterList from '../components/CharacterList'
+import LastVisitedCharacters from '../components/LastVisitedCharacters'
 
 const HomePage = () => {
   return (
@@ -13,7 +14,15 @@ const HomePage = () => {
         lg: '250px 1fr'
       }}
     >
+      <Show above="lg">
+        <GridItem area="aside" paddingX={5}>
+          <LastVisitedCharacters />
+        </GridItem>
+      </Show>
       <GridItem area="main">
+        <Heading as="h1" marginY={5} fontSize="5xl">
+          <Box paddingLeft={2}>Personajes</Box>
+        </Heading>
         <CharacterList />
       </GridItem>
     </Grid>

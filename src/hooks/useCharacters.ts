@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { Character } from '../interfaces/Character'
 import { FetchResponse } from '../services/http-service'
 import characterService from '../services/character-service'
-import useCharacterQueryStore from '../store'
+import { useCharacterQueryStore } from '../store'
 
 const useCharacters = () => {
   const characterQuery = useCharacterQueryStore(s => s.characterQuery)

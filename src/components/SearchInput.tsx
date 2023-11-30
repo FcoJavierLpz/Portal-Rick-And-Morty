@@ -2,7 +2,7 @@ import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
-import useCharacterQueryStore from '../store'
+import { useCharacterQueryStore } from '../store'
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null)
