@@ -1,12 +1,20 @@
+import { useInfiniteQuery } from '@tanstack/react-query'
 import { Character } from '../interfaces/Character'
-import { useQuery } from '@tanstack/react-query'
 import { FetchResponse, CharacterQuery } from '../services/http-service'
 import characterService from '../services/character-service'
 
 const useCharacters = (characterQuery: CharacterQuery) => {
-  return useQuery<FetchResponse<Character>, Error>({
+  return useInfiniteQuery<FetchResponse<Character>, Error>({
     queryKey: ['characters', characterQuery],
-    queryFn: () => characterService.getAll({ params: characterQuery })
+    queryFn: ({ pageParam }) =>
+      characterService.getAll({
+        params: { ...characterQuery, page: pageParam }
+      }),
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.info.next ? allPages.length + 1 : undefined
+    },
+    initialPageParam: 1,
+    staleTime: 24 * 60 * 60 * 1000
   })
 }
 
