@@ -10,7 +10,9 @@ const CharacterCard = ({ character }: Props) => {
     <Card>
       <Image src={character.image} />
       <CardBody>
-        <Heading fontSize="2xl">{character.name}</Heading>
+        <Heading fontSize="2xl" color="brand.green">
+          {character.name}
+        </Heading>
         <Text color="gray.300">{character.species}</Text>
       </CardBody>
     </Card>

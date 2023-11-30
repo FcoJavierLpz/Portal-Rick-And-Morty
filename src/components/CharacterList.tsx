@@ -9,14 +9,12 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import React from 'react'
 
 const CharacterList: React.FC = () => {
-  const { data, isLoading, error, fetchNextPage, hasNextPage } = useCharacters({
-    name: ''
-  })
+  const { data, isLoading, error, fetchNextPage, hasNextPage } = useCharacters()
   const skeletons = Array.from({ length: 5 }, (_, i) => i)
 
   if (error)
     return (
-      <Text fontSize="3xl" color="orangered">
+      <Text fontSize="3xl" color="red.500">
         {error?.message}
       </Text>
     )
