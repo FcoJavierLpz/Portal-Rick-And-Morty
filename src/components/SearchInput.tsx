@@ -1,14 +1,37 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
+import { useRef } from 'react'
 import { BsSearch } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+import useCharacterQueryStore from '../store'
 
 const SearchInput = () => {
+  const ref = useRef<HTMLInputElement>(null)
+  const setSearchText = useCharacterQueryStore(s => s.setSearchText)
+  const navigate = useNavigate()
+
   return (
-    <InputGroup>
-      <InputLeftElement>
-        <BsSearch />
-      </InputLeftElement>
-      <Input borderRadius={20} placeholder="Search" variant="filled" />
-    </InputGroup>
+    <form
+      onSubmit={event => {
+        event.preventDefault()
+
+        if (ref.current) {
+          setSearchText(ref.current.value)
+          navigate('/')
+        }
+      }}
+    >
+      <InputGroup>
+        <InputLeftElement>
+          <BsSearch />
+        </InputLeftElement>
+        <Input
+          ref={ref}
+          borderRadius={20}
+          placeholder="Search characters..."
+          variant="filled"
+        />
+      </InputGroup>
+    </form>
   )
 }
 

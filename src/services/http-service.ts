@@ -7,11 +7,6 @@ export interface FetchResponse<T> {
   results: T[]
 }
 
-export interface CharacterQuery {
-  page?: number
-  name?: string
-}
-
 class HttpService<T> {
   endpoint: string
 
