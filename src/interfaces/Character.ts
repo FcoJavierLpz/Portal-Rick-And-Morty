@@ -8,7 +8,7 @@ interface Episode {
   url: string
 }
 
-interface Character {
+export interface Character {
   id: number
   name: string
   status: string
@@ -23,4 +23,9 @@ interface Character {
   created: string
 }
 
-export default Character
+export interface Info {
+  count: number
+  pages: number
+  next: string | null
+  prev: string | null
+}

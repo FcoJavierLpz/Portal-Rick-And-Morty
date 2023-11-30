@@ -1,27 +1,13 @@
-import { useEffect, useState } from 'react'
-import Character from '../interfaces/Character'
-import { UseQueryResult, useQuery } from 'react-query'
-import { getAllCharacters } from '../services/character-service'
+import { Character } from '../interfaces/Character'
+import { useQuery } from '@tanstack/react-query'
+import { FetchResponse, CharacterQuery } from '../services/http-service'
+import characterService from '../services/character-service'
 
-const useCharacters = () => {
-  const [characters, setCharacters] = useState<Character[]>([])
-
-  const {
-    data,
-    isLoading,
-    isError
-  }: UseQueryResult<{ results: Character[] }, Error> = useQuery(
-    'characters',
-    getAllCharacters
-  )
-
-  useEffect(() => {
-    if (data) {
-      setCharacters(data?.results ?? [])
-    }
-  }, [data])
-
-  return { characters, isLoading, isError }
+const useCharacters = (characterQuery: CharacterQuery) => {
+  return useQuery<FetchResponse<Character>, Error>({
+    queryKey: ['characters', characterQuery],
+    queryFn: () => characterService.getAll({ params: characterQuery })
+  })
 }
 
 export default useCharacters

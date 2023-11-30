@@ -7,10 +7,14 @@ import CharacterCardSkeleton from './CharacterCardSkeleton'
 import CharacterCardContainer from './CharacterCardContainer'
 
 const CharacterList: React.FC = () => {
-  const { characters, isLoading, isError } = useCharacters()
+  const { data: characters, isLoading, error } = useCharacters({ page: 1 })
   const skeletons = Array.from({ length: 5 }, (_, i) => i)
-
-  if (isError) return <Text>Error loading characters</Text>
+  if (error)
+    return (
+      <Text fontSize="3xl" color="orangered">
+        {error?.message}
+      </Text>
+    )
 
   return (
     <SimpleGrid
@@ -24,7 +28,7 @@ const CharacterList: React.FC = () => {
             <CharacterCardSkeleton />
           </CharacterCardContainer>
         ))}
-      {characters.map(character => (
+      {characters?.results?.map(character => (
         <Link key={character.id} to={`/character/${character.id}`}>
           <CharacterCardContainer>
             <CharacterCard character={character} />

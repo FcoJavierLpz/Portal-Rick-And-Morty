@@ -1,4 +1,4 @@
-import Character from '../interfaces/Character'
+import { Character } from '../interfaces/Character'
 import { Card, CardBody, Heading, Image, Text } from '@chakra-ui/react'
 
 interface Props {

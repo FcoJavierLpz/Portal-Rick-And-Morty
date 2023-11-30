@@ -1,21 +1,35 @@
 import apiClient from './api-client'
+import { Info } from '../interfaces/Character'
+import { AxiosRequestConfig } from 'axios'
 
-class HttpService {
+export interface FetchResponse<T> {
+  info: Info
+  results: T[]
+}
+
+export interface CharacterQuery {
+  page?: number
+  name?: string
+}
+
+class HttpService<T> {
   endpoint: string
 
   constructor(endpoint: string) {
     this.endpoint = endpoint
   }
 
-  getAll<T>() {
-    return apiClient.get<T[]>(this.endpoint)
+  getAll = (config: AxiosRequestConfig) => {
+    return apiClient
+      .get<FetchResponse<T>>(this.endpoint, config)
+      .then(res => res.data)
   }
 
-  getById<T>(id: number) {
-    return apiClient.get<T>(`${this.endpoint}/${id}`)
+  get = (id: number | string) => {
+    return apiClient.get<T>(this.endpoint + '/' + id).then(res => res.data)
   }
 }
 
-const create = (endpoint: string) => new HttpService(endpoint)
+const create = <T>(endpoint: string) => new HttpService<T>(endpoint)
 
 export default create
