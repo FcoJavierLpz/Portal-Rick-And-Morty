@@ -13,13 +13,13 @@ import useCharacter from '../hooks/useCharacter'
 import { Location } from '../interfaces/Character'
 import { useLastVisitedCharactersStore } from '../store'
 
-const DetailSection = ({ title, data }: { title: string; data: Location }) => (
+const DetailSection = ({ title, data }: { title: string; data?: Location }) => (
   <>
     <Heading mt={4} size="md" color="brand.green">
       {title}:
     </Heading>
     <Box>
-      {Object.entries(data).map(([key, value]) => (
+      {Object.entries(data as Location).map(([key, value]) => (
         <Text key={key} mb={2} color="gray.600">
           <strong>{key}:</strong> {value || 'N/A'}
         </Text>
