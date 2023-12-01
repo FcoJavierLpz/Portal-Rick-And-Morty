@@ -8,7 +8,7 @@ interface Props {
 const CharacterCard = ({ character }: Props) => {
   return (
     <Card>
-      <Image src={character.image} />
+      <Image src={character.image} alt={character.name} />
       <CardBody>
         <Heading fontSize="2xl" color="brand.green">
           {character.name}

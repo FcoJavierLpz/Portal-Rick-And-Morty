@@ -11,16 +11,16 @@ interface Episode {
 export interface Character {
   id: number
   name: string
-  status: string
+  status?: string
   species: string
-  type: string
-  gender: string
-  origin: Location
-  location: Location
+  type?: string
+  gender?: string
+  origin?: Location
+  location?: Location
   image: string
-  episode: Episode[]
-  url: string
-  created: string
+  episode?: Episode[]
+  url?: string
+  created?: string
 }
 
 export interface Info {
