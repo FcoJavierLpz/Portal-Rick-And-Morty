@@ -1,4 +1,4 @@
-# Productivity App
+# Portal Rick And Morty
 
 ### Requirements
 
@@ -60,7 +60,7 @@ $ yarn test
 ### Deploy
 
 ```bash
-$ npm run build && npm run preview
+$ yarn build && yarn preview
 ```
 
 ### Website Deployment Site
